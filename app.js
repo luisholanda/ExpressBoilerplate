@@ -5,7 +5,7 @@ var async = require('async');
 var path = require('path');
 
 // View engine
-var marko = require('marko');
+var marko = require('marko/express');
 
 // CSS preprocessor
 var stylus = require('stylus')
@@ -26,12 +26,19 @@ var app = express();
 // View engine setup
 app.use(marko());
 
+// Stylus setup
+app.use(stylus.middleware({
+  src: path.join(__dirname, 'stylesheets'),
+  dest: path.join(__dirname, 'public', 'css'),
+  compress: true
+}))
+
 
 // middlewares setup
 function parallel(middlewares) {
   return function (req, res, next) {
     async.each(middlewares, function (mw, cb) {
-      mw(res, res, cb)
+      mw(req, res, cb)
     }, next)
   }
 }
@@ -46,11 +53,6 @@ app.use(parallel([
   bodyParser.json(),
   bodyParser.urlencoded({extended: false}),
   cookieParser(),
-  stylus.middleware({
-    src: path.join(__dirname, 'stylesheets'),
-    dest: path.join(__dirname, 'public', 'css'),
-    compress: true
-  }),
   express.static(path.join(__dirname, 'public'), {
     maxAge: 86400000 * 7
   }),
