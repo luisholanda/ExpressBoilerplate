@@ -9,15 +9,14 @@
 
 
 var express = require('express');
-var render = require('../bin/render');
 var marko = require('marko');
 var router = express.Router();
 
 /* GET home page. */
 
-var home = require('../pages/home');
-router.get('/', function(req, res) {
-  render(home, res);
+var home = require('../views/pages/home')
+router.get('/', (req, res) => {
+    res.marko(home);
 });
 
 module.exports = router;

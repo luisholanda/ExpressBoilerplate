@@ -26,11 +26,11 @@ function render(input, out) {
 
   lasso_head_tag({}, out);
 
-  out.w("</head><body class=\"main-body\">");
+  out.w("</head><body>");
 
   component_globals_tag({}, out);
 
-  out.w("<div class=\"container\"><div class=\"row\"><h1>Express Boilerplate</h1></div></div>");
+  out.w("<div class=\"absolute\"><div class=\"absolute-child\"><h1>Express Boilerplate</h1><p>Lasso, Marko and Stylus configurated out-of-box.</p></div></div>");
 
   lasso_body_tag({}, out);
 
@@ -49,7 +49,8 @@ marko_template._ = render;
 
 marko_template.meta = {
     deps: [
-      "package: ./browser.json"
+      "package: ./browser.json",
+      "./style.styl"
     ],
     tags: [
       "lasso/taglib/config-tag",
