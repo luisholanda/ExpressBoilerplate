@@ -1,3 +1,13 @@
+/**
+ * @Author: Luis Holanda <luiscm>
+ * @Date:   12-Aug-2017
+ * @Email:  luiscmholanda@gmail.com
+ * @Last modified by:   luisholanda
+ * @Last modified time: 12-Aug-2017
+ */
+
+
+
 require('marko/node-require').install();
 
 var express = require('express');
@@ -8,7 +18,7 @@ var path = require('path');
 var marko = require('marko/express');
 
 // CSS preprocessor
-var stylus = require('stylus')
+// var stylus = require('stylus')
 
 // Middlewares
 var favicon = require('serve-favicon')
@@ -17,6 +27,7 @@ var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
 var compression = require('compression')
 var helmet = require('helmet')
+var serveStatic = require('serve-static')
 
 // Routes
 var routes = require('./routes/index')
@@ -26,12 +37,24 @@ var app = express();
 // View engine setup
 app.use(marko());
 
+// Lasso
+app.use(require('lasso/middleware').serveStatic())
+require('lasso').configure({
+    plugins: [
+        "lasso-marko",
+        "lasso-stylus",
+        "lasso-optimize-iife",
+        "lasso-imagemin"
+    ],
+    minify: true,
+})
+
 // Stylus setup
-app.use(stylus.middleware({
-  src: path.join(__dirname, 'stylesheets'),
-  dest: path.join(__dirname, 'public', 'css'),
-  compress: true
-}))
+// app.use(stylus.middleware({
+//   src: path.join(__dirname, 'stylesheets'),
+//   dest: path.join(__dirname, 'public', 'css'),
+//   compress: true
+// }))
 
 
 // middlewares setup
@@ -64,7 +87,7 @@ app.use(routes)
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
-  var err = new Error('Not Found');
+  let err = new Error('Not Found');
   err.status = 404;
   next(err);
 });

@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "dev": "browser-refresh ./bin/www"
   },
   "dependencies": {
     "async": "^2.2.0",
@@ -18,9 +19,17 @@
     "gulp-uglify": "^2.1.2",
     "helmet": "^3.5.0",
     "html-minifier": "^3.4.2",
+    "lasso": "^2.11.16",
+    "lasso-imagemin": "^1.0.7",
+    "lasso-marko": "^2.3.0",
+    "lasso-optimize-iife": "^1.0.2",
+    "lasso-stylus": "^1.1.7",
     "marko": "^4.2.0",
     "morgan": "~1.7.0",
     "serve-favicon": "~2.3.2",
     "stylus": "0.54.5"
+  },
+  "devDependencies": {
+    "browser-refresh-taglib": "^1.1.0"
   }
 }

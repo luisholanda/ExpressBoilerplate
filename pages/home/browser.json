@@ -1,0 +1,9 @@
+{
+    "dependencies": [
+        "../../stylesheets/style.styl",
+        {"type": "css", "url": "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css"},
+        {"type": "js", "url": "https://code.jquery.com/jquery-3.2.1.slim.min.js"},
+        {"type": "js", "url": "https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"},
+        {"type": "js", "url": "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/js/bootstrap.min.js"}
+    ]
+}
