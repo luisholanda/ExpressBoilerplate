@@ -10,9 +10,14 @@
  * Module dependencies.
  */
 
-var app = require('../app');
+var server = require('../dist/app').Server;
 var debug = require('debug')('expressboilerplate:server');
 var http = require('http');
+
+/**
+ * Create the Express app
+ */
+var app = server.boostrap().server
 
 /**
  * Get port from environment and store in Express.
