@@ -35,4 +35,7 @@ gulp.task('ts', function () {
           "moduleResolution": "node"
       }))
       .js.pipe(gulp.dest('dist'))
+
+  gulp.src('src/views/**/*')
+      .pipe(gulp.dest('dist/views'))
 })

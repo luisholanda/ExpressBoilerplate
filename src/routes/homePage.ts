@@ -5,7 +5,7 @@ import * as marko from 'marko'
 export default class HomePageRouter
 {
 
-	private static template = require('../../views/pages/home')
+	private static template = require('../views/pages/home')
 
 	public static subscribe(router: Router): void
 	{

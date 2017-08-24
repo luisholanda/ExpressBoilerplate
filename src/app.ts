@@ -50,8 +50,6 @@ export class Server {
 
 		Routes.setRoutes(router)
 
-		console.log(router)
-
 		this._server.use(router)
 	}
 
