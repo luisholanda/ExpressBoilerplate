@@ -27,7 +27,9 @@ import Routes from './routes'
 
 export class Server {
 
+	// Stores the express application
 	private _server: express.Application
+
 
 	constructor() {
 		this._server = express()
@@ -41,10 +43,21 @@ export class Server {
 		this.setupErrors()
 	}
 
+	/**
+	 * bootstrap:: void -> Server
+	 * 
+	 * 	Creates a new Server object
+	 * 
+	 * @return: new Server object
+	 */
 	public static boostrap(): Server {
 		return new Server();
 	}
 
+	/**
+	 * routes:: void -> void
+	 * Set the routes for the _server application
+	 */
 	private routes(): void {
 		let router = express.Router()
 
@@ -53,6 +66,11 @@ export class Server {
 		this._server.use(router)
 	}
 
+	/**
+	 * config:: void -> void
+	 * 
+	 * Configure all the middlewares for the _server application
+	 */
 	private config(): void {
 		this._server.use(parallel([
 			helmet(),
@@ -67,6 +85,11 @@ export class Server {
 		this.setupLasso()
 	}
 
+	/**
+	 * setupLasso:: void -> void
+	 * 
+	 * Configure the lasso static server.
+	 */
   private setupLasso(): void {
     this._server.use(lassoMw.serveStatic())
     lasso.configure({
@@ -87,7 +110,7 @@ export class Server {
       next(err)
 		})
 		
-		this._server.use((err, req, res) => {
+		this._server.use((req, res, err) => {
 			// set locals, only providing error in development
 			res.locals.message = err.message;
 			res.locals.error = req.app.get('env') === 'development'

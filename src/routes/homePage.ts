@@ -4,8 +4,7 @@ import * as marko from 'marko'
 
 export default class HomePageRouter
 {
-
-	private static template = require('../views/pages/home')
+	private static template: any = require('../views/pages/home')
 
 	public static subscribe(router: Router): void
 	{
@@ -14,9 +13,8 @@ export default class HomePageRouter
 		})
 	}
 
-	private static render(req: Request, res: Response, next: NextFunction)
+	private static render(req: Request, res: Response, next: NextFunction): void
 	{
 		res.marko(HomePageRouter.template)
 	}
-
 }
